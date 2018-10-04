@@ -1,10 +1,12 @@
 package com.coolweather.android.coolweather.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * author:Created by YangYong on 2018/10/4.
  * 存放县的信息
  */
-public class County {
+public class County extends DataSupport {
     private int id;
     private  String countyName;//记录县的名字
     private String weatherid;//县对应的天气Id
@@ -41,4 +43,6 @@ public class County {
     public int getCityId() {
         return cityId;
     }
+
+
 }

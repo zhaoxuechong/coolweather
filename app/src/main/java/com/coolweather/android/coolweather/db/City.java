@@ -1,10 +1,12 @@
 package com.coolweather.android.coolweather.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * author:Created by YangYong on 2018/10/4.
  * 存放市的信息
  */
-public class City {
+public class City extends DataSupport {
 
     private int id;
     private  String cityName;//记录市的名字
@@ -43,4 +45,6 @@ public class City {
     public int getProvinceId() {
         return provinceId;
     }
+
+
 }
