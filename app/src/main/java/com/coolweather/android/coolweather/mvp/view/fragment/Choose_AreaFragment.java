@@ -1,6 +1,7 @@
 package com.coolweather.android.coolweather.mvp.view.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.coolweather.android.coolweather.R;
 import com.coolweather.android.coolweather.db.City;
 import com.coolweather.android.coolweather.db.County;
 import com.coolweather.android.coolweather.db.Province;
+import com.coolweather.android.coolweather.mvp.view.WeatherActivity;
 import com.coolweather.android.coolweather.util.HttpUtil;
 import com.coolweather.android.coolweather.util.Utility;
 
@@ -107,6 +109,14 @@ public class Choose_AreaFragment extends Fragment implements View.OnClickListene
                     queryCounties();
 
 
+                }else if(currentLevel==LEVEL_CIUNTY){
+                    String weatherid = countyList.get(i).getWeatherid();
+                    new LogUils().logzxc("真的？"+weatherid);
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherid);
+
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
 
