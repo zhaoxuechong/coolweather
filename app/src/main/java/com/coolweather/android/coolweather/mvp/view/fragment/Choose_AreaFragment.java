@@ -20,6 +20,7 @@ import com.coolweather.android.coolweather.R;
 import com.coolweather.android.coolweather.db.City;
 import com.coolweather.android.coolweather.db.County;
 import com.coolweather.android.coolweather.db.Province;
+import com.coolweather.android.coolweather.mvp.view.MainActivity;
 import com.coolweather.android.coolweather.mvp.view.WeatherActivity;
 import com.coolweather.android.coolweather.util.HttpUtil;
 import com.coolweather.android.coolweather.util.Utility;
@@ -111,7 +112,21 @@ public class Choose_AreaFragment extends Fragment implements View.OnClickListene
 
                 }else if(currentLevel==LEVEL_CIUNTY){
                     String weatherid = countyList.get(i).getWeatherid();
-                    new LogUils().logzxc("真的？"+weatherid);
+
+                    if(getActivity() instanceof MainActivity){
+
+                        Intent intent=new Intent(getActivity(),WeatherActivity.class);
+                        intent.putExtra("weather_id",weatherid);
+                        startActivity(intent);
+                    }else if(getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity= (WeatherActivity) getActivity();
+                        activity.mDrawerLayout.closeDrawers();
+                        activity.mSwipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherid);
+
+                    }
+
+
                     Intent intent = new Intent(getActivity(), WeatherActivity.class);
                     intent.putExtra("weather_id",weatherid);
 
